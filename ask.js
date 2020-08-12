@@ -24,3 +24,15 @@ fooMod.func2();
 const blah = () => {
     console.log('blah');
 }
+
+//you can make a dummy function as a default for a function that has a callback as an arg
+
+function funcWithCallback(arg, callback = foo => foo) {
+    //async stuff goes here
+    console.log('function stuff goes here');
+
+    callback();
+}
+
+funcWithCallback('blah', () => console.log('callback'));
+funcWithCallback('blah')
