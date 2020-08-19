@@ -15,9 +15,13 @@ function foo() {
     console.log('foo');
 }
 
+fooMod.emmiter.on('func1event', () => console.log('func1event'));
+
 fooMod.func1()
 console.log(fooMod.func2(2,3));
 fooMod.func2();
+
+
 
 //blah();
 //functions defined this way are not hoisted

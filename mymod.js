@@ -1,4 +1,10 @@
+//i guess it must be dereferenced to a specific name?
+const {EventEmitter} = require('events');
+
+const emmiter = new EventEmitter();
+
 function func1() {
+    emmiter.emit('func1event')
     console.log('function 1');
 }
 
@@ -11,5 +17,6 @@ const func3 = () => console.log('func 3');
 module.exports = {
     func1,
     func2,
-    func3
+    func3,
+    emmiter
 };
