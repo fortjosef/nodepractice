@@ -6,12 +6,24 @@ console.log('after');
 console.log(files);
 
 //async
-console.log('before');
+
 fs.readdir('node_modules', (err, files) => {
     if (err) {
         throw err;
     }
     console.log('after');
     console.log(files);
+});
+
+console.log('before');
+
+//if you dont supply encoding it returns a buffer full of hex codes
+//ommiting encoding means you want it read as binary
+const text = fs.readFileSync('./README', 'utf-8');
+
+console.log(text);
+
+fs.readFile('package-lock.json', 'utf-8', (err, data) => {
+    console.log(data);
 });
 
