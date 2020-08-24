@@ -29,6 +29,7 @@ fs.readFile('package-lock.json', 'utf-8', (err, data) => {
 
 //can also use writeFielSync();
 if (!fs.existsSync('writetest.txt')) {
+    //looks like it just overwrites if the file exists
     fs.writeFile('writetest.txt', 'Test Text\n', (err) => {
         if (err) {
             throw err;
@@ -37,3 +38,16 @@ if (!fs.existsSync('writetest.txt')) {
         console.log('write finished');
     });
 }
+
+//there is also mkdirSync();
+if (!fs.existsSync('test-dir')) {
+    //throws exception if dir exists
+    fs.mkdir('test-dir', (err) => {
+        if (err) {
+            throw err;
+        }
+
+        console.log('dir made');
+    });
+}
+
