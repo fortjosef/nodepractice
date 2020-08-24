@@ -27,3 +27,13 @@ fs.readFile('package-lock.json', 'utf-8', (err, data) => {
     console.log(data);
 });
 
+//can also use writeFielSync();
+if (!fs.existsSync('writetest.txt')) {
+    fs.writeFile('writetest.txt', 'Test Text\n', (err) => {
+        if (err) {
+            throw err;
+        }
+
+        console.log('write finished');
+    });
+}
