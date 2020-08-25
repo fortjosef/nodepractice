@@ -51,3 +51,36 @@ if (!fs.existsSync('test-dir')) {
     });
 }
 
+//json can be included directly
+//require needs the ./
+const jsontest = require('./test.json');
+
+console.log('Jsontest: ' + jsontest.foo);
+
+//appendFiel will create file if it doesnt exist
+fs.appendFile('writetest.txt', jsontest.foo + '\n', (err) => {
+    console.log('appendfile');
+    if (err) {
+        throw err;
+    }
+
+    console.log('appending complete');
+});
+
+if (!fs.existsSync('writetest1.txt')) {
+    fs.renameSync('writetest.txt', 'writetest1.txt');
+}
+
+//use rename to move files
+
+if (!fs.existsSync('test-dir/writetest1.txt')) {
+    fs.rename('writetest1.txt', 'test-dir/writetest1.txt', (err) => {
+        if (err) {
+            throw err;
+        }
+
+        console.log('move finished');
+    });
+}
+
+fs.unlinkSync('test-dir/writetest1.txt');
