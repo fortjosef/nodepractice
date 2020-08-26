@@ -54,6 +54,7 @@ if (!fs.existsSync('test-dir')) {
 //json can be included directly
 //require needs the ./
 const jsontest = require('./test.json');
+const { RSA_NO_PADDING } = require('constants');
 
 console.log('Jsontest: ' + jsontest.foo);
 
@@ -84,3 +85,22 @@ if (!fs.existsSync('test-dir/writetest1.txt')) {
 }
 
 fs.unlinkSync('test-dir/writetest1.txt');
+
+//rename can also be used for dirs, dir needs to be empty
+if (fs.existsSync('test-dir') && !fs.existsSync('test-dir1')) {
+    fs.renameSync('test-dir', 'test-dir1');
+}
+
+if (fs.existsSync('test-dir1')) {
+    fs.readdirSync('test-dir1').forEach((fileName) => {
+        fs.unlinkSync('test-dir1/' + fileName);
+    });
+    //dir needs to be empty
+    fs.rmdir('test-dir1', (err) => {
+        if (err) {
+            throw err;
+        }
+
+        console.log('rmdir complete');
+    });
+}
