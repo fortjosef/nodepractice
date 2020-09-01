@@ -15,3 +15,15 @@ cp.exec('ls', (err, data, stderr) => {
         console.log(stderr);
     }
 });
+
+const viApp = cp.spawn('node', ['question.js']);
+
+viApp.stdin.write('foooo\n');
+
+viApp.stdout.on('data', (data) => {
+    console.log(data);
+});
+
+viApp.on('close', () => {
+    console.log('app closed');
+});
