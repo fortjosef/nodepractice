@@ -20,3 +20,11 @@ const request = http.request(options, res => {
 });
 
 request.end();
+
+
+const request2 = http.get('http://www.google.com', (res) => {
+    res.setEncoding('utf-8');
+    res.on('data', (data) => {
+        console.log(data);
+    });
+});
